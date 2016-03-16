@@ -17,6 +17,11 @@ Options:
 Arguments:
     PATTERN     Any legal set of grep arguments"
 
+if [ $# -eq 0 ] ; then
+    echo "$HELP"
+    exit 1
+fi
+
 NUMBER=""
 PATH_LIST=""
 EXPR_LIST=""
