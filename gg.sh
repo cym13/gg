@@ -5,10 +5,14 @@ HELP="gg - A good grep wrapper
 Usage: gg [OPTION]... PATTERN...
 
 Options:
+    -h          Print this help and exits
     -p PATH     Add path to search path list
                 Default is current directory
-    -S EXPR     Grep for expr on search path list
-    -V EXPR     Exclude expr from search path list
+    -e EXPR     Select by name (find -name style)
+    -v EXPR     Exclude expr from search path list
+    -n          Display line numbers
+    --          End of gg options
+                Eveything after that is either a grep option or expression
 
 Arguments:
     PATTERN     Any legal set of grep arguments"
@@ -34,11 +38,7 @@ while [ $# -gt 0 ] ; do
             shift
             INAME_LIST="-iname $1 "
         ;;
-        -S)
-            shift
-            SELECT_PATH_LIST="${SELECT_PATH_LIST}-e $1 "
-        ;;
-        -V)
+        -v)
             shift
             EXCLUDE_PATH_LIST="${EXCLUDE_PATH_LIST}-e $1 "
         ;;
@@ -60,10 +60,6 @@ if [ -z "$PATH_LIST" ] ; then
     PATH_LIST="*"
 fi
 
-if [ -z "$SELECT_PATH_LIST" ] ; then
-    SELECT_PATH_LIST="-e ."
-fi
-
 if [ -z "$EXCLUDE_PATH_LIST" ] ; then
     EXCLUDE_PATH_LIST="-e 'TH1S SH0LDNT_mATch ANYTHING'"
 fi
@@ -74,6 +70,5 @@ if [ -z "$EXPR_LIST" ] ; then
 fi
 
 find $PATH_LIST -type f $INAME_LIST \
-    | grep $SELECT_PATH_LIST \
     | grep -v $EXCLUDE_PATH_LIST \
     | xargs -d '\n' grep --color $NUMBER $COLOR $EXPR_LIST
