@@ -8,6 +8,10 @@ you want to grep was giving as good (and actually in many cases) performances
 as using ag while being more precise than its politics to avoid what's in the
 gitignore.
 
+By default gg is *not* case-sensitive for the path part of the search but is
+with the in-file one for this behaviour seemed to match what I most often
+need.
+
 Documentation
 =============
 
