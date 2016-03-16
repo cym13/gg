@@ -58,5 +58,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 Contact
 =======
 
-Main developper: Cédric Picard
-Email:           cedric.picard@efrei.net
+::
+
+    Main developper: Cédric Picard
+    Email:           cedric.picard@efrei.net
