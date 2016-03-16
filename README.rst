@@ -32,10 +32,10 @@ Documentation
 On performances
 ===============
 
-Experience shows that ag is clearly *clearly* faster on naive tests whith no
-file selection. This is partly due to our using lots of useless processes.
-But when selection must occur on big codebase (more than 100,000 files) gg
-proved to be almost always faster even with only little selection.
+Experience shows that ag is generaly faster on naive tests whith no file
+selection. This is partly due to our using lots of useless processes.  But
+when selection must occur on big codebase (more than 100,000 files) gg proved
+to be almost always faster even with only little selection.
 
 Examples:
 =========
