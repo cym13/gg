@@ -1,17 +1,17 @@
 #!/bin/sh
 
-HELP="gg - A better grep wrapper
+HELP="gg - A good grep wrapper
 
 Usage: gg [OPTION]... PATTERN...
 
 Options:
--p PATH     Add path to search path list
-            Default is current directory
--S EXPR     Grep for expr on search path list
--V EXPR     Exclude expr from search path list
+    -p PATH     Add path to search path list
+                Default is current directory
+    -S EXPR     Grep for expr on search path list
+    -V EXPR     Exclude expr from search path list
 
 Arguments:
-PATTERN     Any legal set of grep arguments"
+    PATTERN     Any legal set of grep arguments"
 
 NUMBER=""
 PATH_LIST=""
