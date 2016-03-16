@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 HELP="gg - A good grep wrapper
 
@@ -8,7 +8,8 @@ Options:
     -h          Print this help and exits
     -p PATH     Add path to search path list
                 Default is current directory
-    -e EXPR     Select by name (find -name style)
+    -e EXPR     Select by name, find -iname expression
+    -r EXPR     Select by regex on the whole path (grep style)
     -v EXPR     Exclude expr from search path list
     -n          Display line numbers
     --          End of gg options
@@ -23,9 +24,9 @@ if [ $# -eq 0 ] ; then
 fi
 
 NUMBER=""
+FIND_EXPR=".*"
 PATH_LIST=""
 EXPR_LIST=""
-INAME_LIST=""
 SELECT_PATH_LIST=""
 EXCLUDE_PATH_LIST=""
 
@@ -37,11 +38,15 @@ while [ $# -gt 0 ] ; do
         ;;
         -p)
             shift
-            PATH_LIST="${PATH_LIST} '$1' "
+            PATH_LIST="${PATH_LIST} $1 "
         ;;
         -e)
             shift
-            INAME_LIST="-iname $1 "
+            FIND_EXPR="-iname $1"
+        ;;
+        -r)
+            shift
+            FIND_EXPR="-regextype grep -regex $1"
         ;;
         -v)
             shift
@@ -74,6 +79,6 @@ if [ -z "$EXPR_LIST" ] ; then
     exit 1
 fi
 
-find $PATH_LIST -type f $INAME_LIST \
+find $PATH_LIST -type f $FIND_EXPR \
     | grep -v $EXCLUDE_PATH_LIST \
     | xargs -d '\n' grep --color $NUMBER $COLOR $EXPR_LIST

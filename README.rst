@@ -19,7 +19,8 @@ Documentation
         -h          Print this help and exits
         -p PATH     Add path to search path list
                     Default is current directory
-        -e EXPR     Select by name (find -name style)
+        -e EXPR     Select by name, find -iname expression
+        -r EXPR     Select by regex on the whole path (grep style)
         -v EXPR     Exclude expr from search path list
         -n          Display line numbers
         --          End of gg options
