@@ -38,7 +38,7 @@ while [ $# -gt 0 ] ; do
         ;;
         -p)
             shift
-            PATH_LIST="${PATH_LIST} $1 "
+            PATH_LIST="$PATH_LIST $1"
         ;;
         -e)
             shift
@@ -50,17 +50,17 @@ while [ $# -gt 0 ] ; do
         ;;
         -v)
             shift
-            EXCLUDE_PATH_LIST="${EXCLUDE_PATH_LIST}-e $1 "
+            EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST -e $1"
         ;;
         -n)
-            COLOR="--line-number"
+            NUMBER="--line-number"
         ;;
         --)
-            EXPR_LIST="${EXPR_LIST}${@} "
+            shift
             break
         ;;
         *)
-            EXPR_LIST="${EXPR_LIST}-e $1 "
+            break
         ;;
     esac
     shift
@@ -71,14 +71,14 @@ if [ -z "$PATH_LIST" ] ; then
 fi
 
 if [ -z "$EXCLUDE_PATH_LIST" ] ; then
-    EXCLUDE_PATH_LIST="-e 'TH1S SH0LDNT_mATch ANYTHING'"
+    EXCLUDE_PATH_LIST="-e'TH1S SH0LDNT_mATch ANYTHING but the_longer_the_better'"
 fi
 
-if [ -z "$EXPR_LIST" ] ; then
+if [ $# -eq 0 ] ; then
     echo "$HELP"
     exit 1
 fi
 
 find $PATH_LIST -type f $FIND_EXPR \
     | grep -v $EXCLUDE_PATH_LIST \
-    | xargs -d '\n' grep --color $NUMBER $COLOR $EXPR_LIST
+    | xargs -d '\n' grep --color $NUMBER "$@"

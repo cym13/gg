@@ -46,7 +46,10 @@ Examples:
     $ gg -e '*.[ch]' 'system('
 
     # Search for either pony or cat in all files that aren't css ones
-    $ gg -v '\.css$' pony cat
+    $ gg -v '\.css$' -- -e pony -e cat
+
+    # Search for Main class in all java files that aren't test or xml related
+    $ gg -e "*.java" -v Test -v XML "class Main"
 
 License
 =======
