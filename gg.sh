@@ -114,4 +114,4 @@ fi
 
 find $PATH_LIST -type f $FIND_EXPR \
     | grep -v $IGNORE_CASE $EXCLUDE_PATH_LIST \
-    | xargs -d '\n' grep --color $NUMBER "$@"
+    | xargs -d '\n' grep --color $NUMBER "$@" /dev/null
