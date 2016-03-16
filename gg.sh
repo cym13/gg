@@ -26,8 +26,6 @@ fi
 NUMBER=""
 FIND_EXPR=""
 PATH_LIST=""
-EXPR_LIST=""
-SELECT_PATH_LIST=""
 EXCLUDE_PATH_LIST=""
 
 while [ $# -gt 0 ] ; do
