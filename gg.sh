@@ -9,8 +9,10 @@ Options:
     -p PATH     Add path to search path list
                 Default is current directory
     -e EXPR     Select by name, find -iname expression
+    -E EXT      Select by extension, similar to  -e \"*.EXT\"
     -r EXPR     Select by regex on the whole path (grep style)
     -v EXPR     Exclude expr from search path list
+    -V EXT      Exclude files with extension EXT from search path list
     -c          Be case sensitive in path search
     --          End of gg options
                 Eveything after that is either a grep option or expression
@@ -48,6 +50,14 @@ while [ $# -gt 0 ] ; do
                 FIND_EXPR="-iname $1"
             fi
         ;;
+        -E)
+            shift
+            if [ -z "$IGNORE_CASE" ] ; then
+                FIND_EXPR="-name *.$1"
+            else
+                FIND_EXPR="-iname *.$1"
+            fi
+        ;;
         -r)
             shift
             FIND_EXPR="-regextype grep -regex $1"
@@ -55,6 +65,10 @@ while [ $# -gt 0 ] ; do
         -v)
             shift
             EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST -e $1"
+        ;;
+        -V)
+            shift
+            EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST -e \.$1\$"
         ;;
         -c)
             IGNORE_CASE=""

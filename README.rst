@@ -24,8 +24,10 @@ Documentation
         -p PATH     Add path to search path list
                     Default is current directory
         -e EXPR     Select by name, find -iname expression
+        -E EXT      Select by extension, similar to  -e "*.EXT"
         -r EXPR     Select by regex on the whole path (grep style)
         -v EXPR     Exclude expr from search path list
+        -V EXT      Exclude files with extension EXT from search path list
         -c          Be case sensitive in path search
         --          End of gg options
                     Eveything after that is either a grep option or expression
@@ -50,7 +52,7 @@ Examples:
     $ gg -e '*.[ch]' 'system('
 
     # Search for either pony or cat in all files that aren't css ones
-    $ gg -v '\.css$' -- -e pony -e cat
+    $ gg -V css -- -e pony -e cat
 
     # Search for Main class in all java files that aren't test or xml related
     $ gg -e "*.java" -v Test -v XML "class Main"
