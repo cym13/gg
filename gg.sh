@@ -44,23 +44,38 @@ while [ $# -gt 0 ] ; do
         ;;
         -e)
             shift
+
+            if [ -n "$FIND_EXPR" ] ; then
+                FIND_EXPR="$FIND_EXPR -o"
+            fi
+
             if [ -z "$IGNORE_CASE" ] ; then
-                FIND_EXPR="-name $1"
+                FIND_EXPR="$FIND_EXPR -name $1"
             else
-                FIND_EXPR="-iname $1"
+                FIND_EXPR="$FIND_EXPR -iname $1"
             fi
         ;;
         -E)
             shift
+
+            if [ -n "$FIND_EXPR" ] ; then
+                FIND_EXPR="$FIND_EXPR -o"
+            fi
+
             if [ -z "$IGNORE_CASE" ] ; then
-                FIND_EXPR="-name *.$1"
+                FIND_EXPR="$FIND_EXPR -name *.$1"
             else
-                FIND_EXPR="-iname *.$1"
+                FIND_EXPR="$FIND_EXPR -iname *.$1"
             fi
         ;;
         -r)
             shift
-            FIND_EXPR="-regextype grep -regex $1"
+
+            if [ -n "$FIND_EXPR" ] ; then
+                FIND_EXPR="$FIND_EXPR -o"
+            fi
+
+            FIND_EXPR="$FIND_EXPR -regextype grep -regex $1"
         ;;
         -v)
             shift

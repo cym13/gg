@@ -48,14 +48,14 @@ Examples:
 
 ::
 
-    # Search for the system() function in C files
-    $ gg -e '*.[ch]' 'system('
+    # Search for the system() function in C or C++ files and all python tests
+    $ gg -e "test_*.py" -E c -E cpp -E h -E hpp 'system('
 
     # Search for either pony or cat in all files that aren't css ones
     $ gg -V css -- -e pony -e cat
 
     # Search for Main class in all java files that aren't test or xml related
-    $ gg -e "*.java" -v Test -v XML "class Main"
+    $ gg -E java -v Test -v XML "class Main"
 
 License
 =======
