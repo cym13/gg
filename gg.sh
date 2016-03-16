@@ -24,7 +24,7 @@ if [ $# -eq 0 ] ; then
 fi
 
 NUMBER=""
-FIND_EXPR=".*"
+FIND_EXPR=""
 PATH_LIST=""
 EXPR_LIST=""
 SELECT_PATH_LIST=""
