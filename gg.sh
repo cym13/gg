@@ -11,7 +11,7 @@ Options:
     -e EXPR     Select by name, find -iname expression
     -r EXPR     Select by regex on the whole path (grep style)
     -v EXPR     Exclude expr from search path list
-    -n          Display line numbers
+    -c          Be case sensitive in path search
     --          End of gg options
                 Eveything after that is either a grep option or expression
 
@@ -24,6 +24,8 @@ if [ $# -eq 0 ] ; then
 fi
 
 NUMBER=""
+IGNORE_CASE="-i"
+
 FIND_EXPR=""
 PATH_LIST=""
 EXCLUDE_PATH_LIST=""
@@ -40,7 +42,11 @@ while [ $# -gt 0 ] ; do
         ;;
         -e)
             shift
-            FIND_EXPR="-iname $1"
+            if [ -z "$IGNORE_CASE" ] ; then
+                FIND_EXPR="-name $1"
+            else
+                FIND_EXPR="-iname $1"
+            fi
         ;;
         -r)
             shift
@@ -50,8 +56,8 @@ while [ $# -gt 0 ] ; do
             shift
             EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST -e $1"
         ;;
-        -n)
-            NUMBER="--line-number"
+        -c)
+            IGNORE_CASE=""
         ;;
         --)
             shift
@@ -78,5 +84,5 @@ if [ $# -eq 0 ] ; then
 fi
 
 find $PATH_LIST -type f $FIND_EXPR \
-    | grep -v $EXCLUDE_PATH_LIST \
+    | grep -v $IGNORE_CASE $EXCLUDE_PATH_LIST \
     | xargs -d '\n' grep --color $NUMBER "$@"

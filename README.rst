@@ -22,7 +22,7 @@ Documentation
         -e EXPR     Select by name, find -iname expression
         -r EXPR     Select by regex on the whole path (grep style)
         -v EXPR     Exclude expr from search path list
-        -n          Display line numbers
+        -c          Be case sensitive in path search
         --          End of gg options
                     Eveything after that is either a grep option or expression
 
