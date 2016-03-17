@@ -1,7 +1,9 @@
+========================
+gg - A good grep wrapper
+========================
+
 Description
 ===========
-
-gg - A good grep wrapper
 
 gg is inspired by ag to prove that giving a good way to select on which files
 you want to grep was giving as good (and actually in many cases better)
@@ -54,16 +56,35 @@ to be almost always faster even with only little selection.
 Examples:
 =========
 
+- Search for the system() function in C or C++ files and all python tests
+
 ::
 
-    # Search for the system() function in C or C++ files and all python tests
     $ gg -e "test_*.py" -E c -E cpp -E h -E hpp 'system('
 
-    # Search for either pony or cat in all files that aren't css ones
+- Search for either pony or cat in all files that aren't css ones
+
+::
+
     $ gg -V css -- -e pony -e cat
 
-    # Search for Main class in all java files that aren't test or xml related
+- Search for Main class in all java files that aren't test or xml related
+
+::
+
     $ gg -E java -v Test -v XML "class Main"
+
+- I want a reccursive cat-finding grep! (Short answer: use grep)
+
+::
+
+    $ gg cat
+
+- But I really wanted was a find! (Short answer: use find)
+
+::
+
+    $ gg -l '^$'
 
 License
 =======
