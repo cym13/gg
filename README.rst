@@ -12,6 +12,14 @@ By default gg is *not* case-sensitive for the path part of the search but is
 with the in-file one for this behaviour seemed to match what I most often
 need.
 
+A big part of gg's speed is that it doesn't by default look into the
+top-directories hidden files and directories as those files are often hidden
+for a good reason. Overriding this behaviour is easy:
+
+::
+
+    $ gg -p . <other arguments and options>
+
 Documentation
 =============
 
