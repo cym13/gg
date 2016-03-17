@@ -100,7 +100,7 @@ if [ -z "$PATH_LIST" ] ; then
 fi
 
 if [ -z "$EXCLUDE_PATH_LIST" ] ; then
-    EXCLUDE_PATH_LIST="-e'TH1S SH0ULDNT_mATch ANYTHING but the_longer_the_better'"
+    EXCLUDE_PATH_LIST="^$"
 fi
 
 if [ $# -eq 0 ] ; then
