@@ -100,11 +100,11 @@ while [ $# -gt 0 ] ; do
 done
 
 if [ -z "$PATH_LIST" ] ; then
-    PATH_LIST="*"
+    PATH_LIST=`find . -maxdepth 1 -name '[^.]*'`
 fi
 
 if [ -z "$EXCLUDE_PATH_LIST" ] ; then
-    EXCLUDE_PATH_LIST="-e'TH1S SH0LDNT_mATch ANYTHING but the_longer_the_better'"
+    EXCLUDE_PATH_LIST="-e'TH1S SH0ULDNT_mATch ANYTHING but the_longer_the_better'"
 fi
 
 if [ $# -eq 0 ] ; then
@@ -112,6 +112,7 @@ if [ $# -eq 0 ] ; then
     exit 1
 fi
 
+set -f
 find $PATH_LIST -type f $FIND_EXPR \
     | grep -v $IGNORE_CASE $EXCLUDE_PATH_LIST \
     | xargs -d '\n' grep --color $NUMBER "$@" /dev/null
