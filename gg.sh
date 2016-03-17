@@ -101,7 +101,7 @@ while [ $# -gt 0 ] ; do
 done
 
 if [ -z "$PATH_LIST" ] ; then
-    PATH_LIST=`find . -maxdepth 1 -name '[^.]*'`
+    PATH_LIST=`find . -maxdepth 1 -name '[^.]\*'`
 fi
 
 if [ -z "$EXCLUDE_PATH_LIST" ] ; then
