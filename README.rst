@@ -4,9 +4,9 @@ Description
 gg - A good grep wrapper
 
 gg is inspired by ag to prove that giving a good way to select on which files
-you want to grep was giving as good (and actually in many cases) performances
-as using ag while being more precise than its politics to avoid what's in the
-gitignore.
+you want to grep was giving as good (and actually in many cases better)
+performances as using ag while being more precise than its politics to avoid
+what's in the gitignore.
 
 By default gg is *not* case-sensitive for the path part of the search but is
 with the in-file one for this behaviour seemed to match what I most often
