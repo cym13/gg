@@ -40,7 +40,7 @@ EXCLUDE_PATH_LIST=""
 
 DELIM_FIND=""
 DELIM_GREP=""
-DELIM_XARGS="-d '\n'"
+DELIM_XARGS="-d \n"
 
 next_find_expr() {
     if [ -n "$FIND_EXPR" ] ; then
