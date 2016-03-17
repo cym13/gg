@@ -39,6 +39,7 @@ Documentation
         -v EXPR     Exclude expr from search path list
         -V EXT      Exclude files with extension EXT from search path list
         -c          Be case sensitive in path search
+        -0          Use \0 as internal result separator
         --          End of gg options
                     Eveything after that is either a grep option or expression
 
