@@ -32,6 +32,14 @@ FIND_EXPR=""
 PATH_LIST=""
 EXCLUDE_PATH_LIST=""
 
+next_find_expr() {
+    if [ -n "$FIND_EXPR" ] ; then
+        FIND_EXPR="$FIND_EXPR -o $1"
+    else
+        FIND_EXPR="$1"
+    fi
+}
+
 while [ $# -gt 0 ] ; do
     case "$1" in
         -h)
@@ -45,37 +53,25 @@ while [ $# -gt 0 ] ; do
         -e)
             shift
 
-            if [ -n "$FIND_EXPR" ] ; then
-                FIND_EXPR="$FIND_EXPR -o"
-            fi
-
             if [ -z "$IGNORE_CASE" ] ; then
-                FIND_EXPR="$FIND_EXPR -name $1"
+                next_find_expr "-name $1"
             else
-                FIND_EXPR="$FIND_EXPR -iname $1"
+                next_find_expr "-iname $1"
             fi
         ;;
         -E)
             shift
 
-            if [ -n "$FIND_EXPR" ] ; then
-                FIND_EXPR="$FIND_EXPR -o"
-            fi
-
             if [ -z "$IGNORE_CASE" ] ; then
-                FIND_EXPR="$FIND_EXPR -name *.$1"
+                next_find_expr "-name *.$1"
             else
-                FIND_EXPR="$FIND_EXPR -iname *.$1"
+                next_find_expr "-iname *.$1"
             fi
         ;;
         -r)
             shift
 
-            if [ -n "$FIND_EXPR" ] ; then
-                FIND_EXPR="$FIND_EXPR -o"
-            fi
-
-            FIND_EXPR="$FIND_EXPR -regextype grep -regex $1"
+            next_find_expr "-regextype grep -regex $1"
         ;;
         -v)
             shift
