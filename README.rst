@@ -88,6 +88,18 @@ that:
 Examples:
 =========
 
+- I want a reccursive cat-finding grep! (Short answer: use grep)
+
+::
+
+    $ gg cat
+
+- But I really wanted was a find! (Short answer: use find)
+
+::
+
+    $ gg -l '^$'
+
 - Search for the system() function in C or C++ files and all python tests
 
 ::
@@ -105,18 +117,6 @@ Examples:
 ::
 
     $ gg -E java -v Test -v XML "class Main"
-
-- I want a reccursive cat-finding grep! (Short answer: use grep)
-
-::
-
-    $ gg cat
-
-- But I really wanted was a find! (Short answer: use find)
-
-::
-
-    $ gg -l '^$'
 
 License
 =======
