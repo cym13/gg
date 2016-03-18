@@ -14,7 +14,6 @@ Options:
     -v EXPR     Exclude expr from search path list
     -V EXT      Exclude files with extension EXT from search path list
     -c          Be case sensitive in path search
-    -0          Use \\0 as internal result separator
     --          End of gg options
                 Eveything after that is either a grep option or expression
 
@@ -37,10 +36,6 @@ IGNORE_CASE="-i"
 FIND_EXPR=""
 PATH_LIST=""
 EXCLUDE_PATH_LIST=""
-
-DELIM_FIND=""
-DELIM_GREP=""
-DELIM_XARGS="-d \n"
 
 next_find_expr() {
     if [ -n "$FIND_EXPR" ] ; then
@@ -94,11 +89,6 @@ while [ $# -gt 0 ] ; do
         -c)
             IGNORE_CASE=""
         ;;
-        -0)
-            DELIM_FIND="-print0"
-            DELIM_GREP="-FzZ"
-            DELIM_XARGS="-0"
-        ;;
         --)
             shift
             break
@@ -124,6 +114,6 @@ if [ $# -eq 0 ] ; then
 fi
 
 set -f
-find $PATH_LIST -type f $FIND_EXPR $DELIM_FIND \
-    | grep $DELIM_GREP -v $IGNORE_CASE $EXCLUDE_PATH_LIST \
-    | xargs $DELIM_XARGS grep --color $NUMBER "$@" /dev/null
+find $PATH_LIST -type f $FIND_EXPR -print0 \
+    | grep -FzZ -v $IGNORE_CASE $EXCLUDE_PATH_LIST \
+    | xargs -0 grep --color $NUMBER "$@" /dev/null
