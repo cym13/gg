@@ -67,13 +67,15 @@ that:
     - look only in interesting files
     - use multiple processes (with pipelining in gg's case)
 
-- gg doesn't display line numbers by default as counting lines before hits
-  takes time
+- gg doesn't display line numbers by default
+    and counting lines before hits takes time
 
-- gg makes it easier to restrict the files to search in by making the user
-  explicitely list files of interest and proposing regex-based selection.
+- gg makes it easier to restrict the files to search in
+      by making the user explicitely list files of interest and proposing
+      regex-based selection.
 
--- gg is built on grep. And GNU grep is awesome_.
+- gg is built on grep,
+      and GNU grep is awesome_.
 
 .. _awesome: https://lists.freebsd.org/pipermail/freebsd-current/2010-August/019310.html
 
