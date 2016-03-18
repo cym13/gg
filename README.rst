@@ -5,10 +5,17 @@ gg - A good grep wrapper
 Description
 ===========
 
-gg is inspired by ag to prove that giving a good way to select on which files
-you want to grep was giving as good (and actually in many cases better)
-performances as using ag while being more precise than its politics to avoid
-what's in the gitignore.
+gg is inspired by ack and ag to prove that giving a good way to select on
+which files you want to grep was giving as good (and actually in many cases
+better) performances as using ack or ag while being more precise than its
+politics to avoid what's in the gitignore.
+
+gg isn't built to solve the exact same problem as ag and ack though. While
+both allow for quick search in files in a development oriented environment ag
+and ack and designed toward use from a text editor. gg isn't and exists
+because I find that different environments call for different tools. I can't
+see a reason not to use ack or ag in an editor, but I can't thing of a reason
+to use them instead of gg from the command-line either.
 
 By default gg is *not* case-sensitive for the path part of the search but is
 with the in-file one for this behaviour seemed to match what I most often
@@ -49,9 +56,26 @@ On performances
 ===============
 
 Experience shows that ag is generaly faster on naive tests whith no file
-selection. This is partly due to our using lots of useless processes.  But
+selection. This is partly due to our using lots of useless processes. But
 when selection must occur on big codebase (more than 100,000 files) gg proved
 to be almost always faster even with only little selection.
+
+The difference in speed compared to ack or ag can be explained by the fact
+that:
+
+- We mostly use the same strategies:
+    - look only in interesting files
+    - use multiple processes (with pipelining in gg's case)
+
+- gg doesn't display line numbers by default as counting lines before hits
+  takes time
+
+- gg makes it easier to restrict the files to search in by making the user
+  explicitely list files of interest and proposing regex-based selection.
+
+-- gg is built on grep. And GNU grep is awesome_.
+
+.. _awesome: https://lists.freebsd.org/pipermail/freebsd-current/2010-August/019310.html
 
 Examples:
 =========
