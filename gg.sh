@@ -114,6 +114,6 @@ if [ $# -eq 0 ] ; then
 fi
 
 set -f
-find $PATH_LIST -type f \( $FIND_EXPR \) -print0 \
+find $PATH_LIST -type f \( -true $FIND_EXPR \) -print0 \
     | grep -FzZ -v $IGNORE_CASE $EXCLUDE_PATH_LIST \
     | xargs -0 grep --color $NUMBER "$@" /dev/null
