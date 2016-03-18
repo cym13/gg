@@ -5,23 +5,29 @@ gg - A good grep wrapper
 Description
 ===========
 
-gg is inspired by ack and ag to prove that giving a good way to select on
+`gg` is inspired by `ack` and `ag`. I've been told over and over that they are
+faster than grep and I wanted to prove that giving a good way to select on
 which files you want to grep was giving as good (and actually in many cases
-better) performances as using ack or ag while being more precise than its
-politics to avoid what's in the gitignore.
+better) performances as using `ack` or `ag`.
 
-gg isn't built to solve the exact same problem as ag and ack though. While
-both allow for quick search in files in a development oriented environment ag
-and ack and designed toward use from a text editor. gg isn't and exists
+Doing so also is more precise than `ag`'s politics to avoid what's in the
+gitignore for I often want to search in files that are in the gitignore. When
+I port a codebase from one language to another for example I generally copy
+the original files to gradually convert them. Those files are in my gitignore
+because I don't want them to be tr`ack`ed but they clearly are search-worthy.
+
+`gg` isn't built to solve the exact same problem as `ag` and `ack` though. While
+both allow for quick search in files in a development oriented environment `ag`
+and `ack` and designed toward use from a text editor. `gg` isn't and exists
 because I find that different environments call for different tools. I can't
-see a reason not to use ack or ag in an editor, but I can't thing of a reason
-to use them instead of gg from the command-line either.
+see a reason not to use `ack` or `ag` in an editor, but I can't think of a reason
+to use them instead of `gg` from the command-line either.
 
-By default gg is *not* case-sensitive for the path part of the search but is
+By default `gg` is *not* case-sensitive for the path part of the search but is
 with the in-file one for this behaviour seemed to match what I most often
 need.
 
-A big part of gg's speed is that it doesn't by default look into the
+A big part of `gg`'s speed is that it doesn't by default look into the
 top-directories hidden files and directories as those files are often hidden
 for a good reason. Overriding this behaviour is easy:
 
@@ -47,7 +53,7 @@ Documentation
         -V EXT      Exclude files with extension EXT from search path list
         -c          Be case sensitive in path search
         --          End of gg options
-                    Eveything after that is either a grep option or expression
+                    Everything after that is either a grep option or expression
 
     Arguments:
         PATTERN     Any legal set of grep arguments
@@ -55,26 +61,26 @@ Documentation
 On performances
 ===============
 
-Experience shows that ag is generaly faster on naive tests whith no file
+Experience shows that `ag` is generaly faster on naive tests whith no file
 selection. This is partly due to our using lots of useless processes. But
-when selection must occur on big codebase (more than 100,000 files) gg proved
+when selection must occur on big codebase (more than 100,000 files) `gg` proved
 to be almost always faster even with only little selection.
 
-The difference in speed compared to ack or ag can be explained by the fact
+The difference in speed compared to `ack` or `ag` can be explained by the fact
 that:
 
 - We mostly use the same strategies:
     - look only in interesting files
-    - use multiple processes (with pipelining in gg's case)
+    - use multiple processes (with pipelining in the case of `gg`)
 
-- gg doesn't display line numbers by default
+- `gg` doesn't display line numbers by default
     and counting lines before hits takes time
 
-- gg makes it easier to restrict the files to search in
+- `gg` makes it easier to restrict the files to search in
       by making the user explicitely list files of interest and proposing
       regex-based selection.
 
-- gg is built on grep,
+- `gg` is built on grep,
       and GNU grep is awesome_.
 
 .. _awesome: https://lists.freebsd.org/pipermail/freebsd-current/2010-August/019310.html

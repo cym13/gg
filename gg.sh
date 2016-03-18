@@ -15,7 +15,7 @@ Options:
     -V EXT      Exclude files with extension EXT from search path list
     -c          Be case sensitive in path search
     --          End of gg options
-                Eveything after that is either a grep option or expression
+                Everything after that is either a grep option or expression
 
 Arguments:
     PATTERN     Any legal set of grep arguments"
