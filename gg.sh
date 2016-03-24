@@ -23,6 +23,8 @@ Options:
 Arguments:
     PATTERN     Any legal set of grep arguments"
 
+VERSION=1.0
+
 # Oh come on!
 if [ "${0##*/}" = pony ] ; then
     HELP=`sed 's/\(\W\)\w\{4\}\(\W\)/\1PONY\2/g;s/PONY  /PONY! /g' <<< "$HELP"`
@@ -53,6 +55,10 @@ while [ $# -gt 0 ] ; do
     case "$1" in
         -h) ;& --help)
             echo "$HELP"
+            exit 0
+            ;;
+        --version)
+            echo "gg v$VERSION"
             exit 0
             ;;
         -p) ;& --path)
