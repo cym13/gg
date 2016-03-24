@@ -52,6 +52,7 @@ Documentation
         -v EXPR     Exclude expr from search path list
         -V EXT      Exclude files with extension EXT from search path list
         -c          Be case sensitive in path search
+        -H          Include hidden files and directories
         --          End of gg options
                     Everything after that is either a grep option or expression
 
