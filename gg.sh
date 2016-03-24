@@ -52,20 +52,19 @@ while [ $# -gt 0 ] ; do
         -h)
             echo "$HELP"
             exit 0
-        ;;
+            ;;
         -p)
             shift
             PATH_LIST="$PATH_LIST $1"
-        ;;
+            ;;
         -e)
             shift
-
             if [ -z "$IGNORE_CASE" ] ; then
                 next_find_expr "-name $1"
             else
                 next_find_expr "-iname $1"
             fi
-        ;;
+            ;;
         -E)
             shift
 
@@ -74,33 +73,32 @@ while [ $# -gt 0 ] ; do
             else
                 next_find_expr "-iname *.$1"
             fi
-        ;;
+            ;;
         -r)
             shift
-
             next_find_expr "-regextype grep -regex $1"
-        ;;
+            ;;
         -v)
             shift
             EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST -e $1"
-        ;;
+            ;;
         -V)
             shift
             EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST -e \.$1\$"
-        ;;
+            ;;
         -c)
             IGNORE_CASE=""
-        ;;
+            ;;
         -H)
             IGNORE_HIDDEN_FILES=false
             ;;
         --)
             shift
             break
-        ;;
+            ;;
         *)
             break
-        ;;
+            ;;
     esac
     shift
 done
