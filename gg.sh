@@ -14,6 +14,7 @@ Options:
     -v EXPR     Exclude expr from search path list
     -V EXT      Exclude files with extension EXT from search path list
     -c          Be case sensitive in path search
+    -H          Include hidden files and directories
     --          End of gg options
                 Everything after that is either a grep option or expression
 
@@ -36,6 +37,7 @@ IGNORE_CASE="-i"
 FIND_EXPR=""
 PATH_LIST=""
 EXCLUDE_PATH_LIST=""
+IGNORE_HIDDEN_FILES=true
 
 next_find_expr() {
     if [ -n "$FIND_EXPR" ] ; then
@@ -89,6 +91,9 @@ while [ $# -gt 0 ] ; do
         -c)
             IGNORE_CASE=""
         ;;
+        -H)
+            IGNORE_HIDDEN_FILES=false
+            ;;
         --)
             shift
             break
@@ -104,6 +109,10 @@ if [ -z "$PATH_LIST" ] ; then
     PATH_LIST=`find . -maxdepth 1 -name '[^.]\*'`
 fi
 
+if $IGNORE_HIDDEN_FILES ; then
+    EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST \(\/\|^\)\.[^/]"
+fi
+
 if [ -z "$EXCLUDE_PATH_LIST" ] ; then
     EXCLUDE_PATH_LIST="^$"
 fi
@@ -115,5 +124,5 @@ fi
 
 set -f
 find $PATH_LIST -type f \( -true $FIND_EXPR \) -print0 \
-    | grep -FzZ -v $IGNORE_CASE $EXCLUDE_PATH_LIST \
+    | grep -zZ -v $IGNORE_CASE $EXCLUDE_PATH_LIST \
     | xargs -0 grep --color $NUMBER "$@" /dev/null
