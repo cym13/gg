@@ -5,18 +5,20 @@ HELP="gg - A good grep wrapper
 Usage: gg [OPTION]... PATTERN...
 
 Options:
-    -h          Print this help and exits
-    -p PATH     Add path to search path list
-                Default is current directory
-    -e EXPR     Select by name, find -iname expression
-    -E EXT      Select by extension, similar to  -e \"*.EXT\"
-    -r EXPR     Select by regex on the whole path (grep style)
-    -v EXPR     Exclude expr from search path list
-    -V EXT      Exclude files with extension EXT from search path list
-    -c          Be case sensitive in path search
-    -H          Include hidden files and directories
-    --          End of gg options
-                Everything after that is either a grep option or expression
+    -h, --help              Print this help and exits
+    -p, --path PATH         Add path to search path list
+                            Default is current directory
+    -e, --expr EXPR         Select by name, find -iname expression
+    -E, --ext EXT           Select by extension, similar to  -e \"*.EXT\"
+    -r, --regex EXPR        Select by regex on the whole path (grep style)
+    -v, --exclude EXPR      Exclude expr from search path list
+    -V, --exclude-ext EXPR  Exclude files with extension EXT from search
+                            path list
+    -c, --case-sensitive    Be case sensitive in path search
+    -H, --include-hidden    Include hidden files and directories
+    --                      End of gg options
+                            Everything after that is either a grep option
+                            or expression
 
 Arguments:
     PATTERN     Any legal set of grep arguments"
@@ -49,15 +51,15 @@ next_find_expr() {
 
 while [ $# -gt 0 ] ; do
     case "$1" in
-        -h)
+        -h) ;& --help)
             echo "$HELP"
             exit 0
             ;;
-        -p)
+        -p) ;& --path)
             shift
             PATH_LIST="$PATH_LIST $1"
             ;;
-        -e)
+        -e) ;& --expr)
             shift
             if [ -z "$IGNORE_CASE" ] ; then
                 next_find_expr "-name $1"
@@ -65,31 +67,30 @@ while [ $# -gt 0 ] ; do
                 next_find_expr "-iname $1"
             fi
             ;;
-        -E)
+        -E) ;& --ext)
             shift
-
             if [ -z "$IGNORE_CASE" ] ; then
                 next_find_expr "-name *.$1"
             else
                 next_find_expr "-iname *.$1"
             fi
             ;;
-        -r)
+        -r) ;& --regex)
             shift
             next_find_expr "-regextype grep -regex $1"
             ;;
-        -v)
+        -v) ;& --exclude)
             shift
             EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST -e $1"
             ;;
-        -V)
+        -V) ;& --exclude-ext)
             shift
             EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST -e \.$1\$"
             ;;
-        -c)
+        -c) ;& --case-sensitive)
             IGNORE_CASE=""
             ;;
-        -H)
+        -H) ;& --include-hidden)
             IGNORE_HIDDEN_FILES=false
             ;;
         --)

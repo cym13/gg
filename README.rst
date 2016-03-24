@@ -43,18 +43,20 @@ Documentation
     Usage: gg [OPTION]... PATTERN...
 
     Options:
-        -h          Print this help and exits
-        -p PATH     Add path to search path list
-                    Default is current directory
-        -e EXPR     Select by name, find -iname expression
-        -E EXT      Select by extension, similar to  -e "*.EXT"
-        -r EXPR     Select by regex on the whole path (grep style)
-        -v EXPR     Exclude expr from search path list
-        -V EXT      Exclude files with extension EXT from search path list
-        -c          Be case sensitive in path search
-        -H          Include hidden files and directories
-        --          End of gg options
-                    Everything after that is either a grep option or expression
+        -h, --help              Print this help and exits
+        -p, --path PATH         Add path to search path list
+                                Default is current directory
+        -e, --expr EXPR         Select by name, find -iname expression
+        -E, --ext EXT           Select by extension, similar to  -e "*.EXT"
+        -r, --regex EXPR        Select by regex on the whole path (grep style)
+        -v, --exclude EXPR      Exclude expr from search path list
+        -V, --exclude-ext EXPR  Exclude files with extension EXT from search
+                                path list
+        -c, --case-sensitive    Be case sensitive in path search
+        -H, --include-hidden    Include hidden files and directories
+        --                      End of gg options
+                                Everything after that is either a grep option
+                                or expression
 
     Arguments:
         PATTERN     Any legal set of grep arguments
