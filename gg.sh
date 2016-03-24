@@ -6,6 +6,7 @@ Usage: gg [OPTION]... PATTERN...
 
 Options:
     -h, --help              Print this help and exits
+    --version               Print version information and exits
     -p, --path PATH         Add path to search path list
                             Default is current directory
     -e, --expr EXPR         Select by name, find -iname expression
