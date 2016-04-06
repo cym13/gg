@@ -116,7 +116,7 @@ if [ -z "$PATH_LIST" ] ; then
 fi
 
 if $IGNORE_HIDDEN_FILES ; then
-    EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST \(\/\|^\)\.[^/]"
+    EXCLUDE_PATH_LIST="$EXCLUDE_PATH_LIST -e \(\/\|^\)\.[^/]"
 fi
 
 if [ -z "$EXCLUDE_PATH_LIST" ] ; then
