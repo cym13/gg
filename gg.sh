@@ -24,7 +24,7 @@ Options:
 Arguments:
     PATTERN     Any legal set of grep arguments"
 
-VERSION="1.0-d"
+VERSION="1.1"
 
 # Oh come on!
 if [ "${0##*/}" = pony ] ; then
