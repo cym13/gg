@@ -112,7 +112,7 @@ while [ $# -gt 0 ] ; do
 done
 
 if [ -z "$PATH_LIST" ] ; then
-    PATH_LIST=`find . -maxdepth 1 -name '[^.]\*'`
+    PATH_LIST=`find . -maxdepth 1 -readable -name '[^.]\*'`
 fi
 
 if $IGNORE_HIDDEN_FILES ; then
@@ -129,6 +129,6 @@ if [ $# -eq 0 ] ; then
 fi
 
 set -f
-find $PATH_LIST -type f \( -true $FIND_EXPR \) -print0 \
+find $PATH_LIST -readable -type f \( -true $FIND_EXPR \) -print0 \
     | grep -zZ -v $IGNORE_CASE $EXCLUDE_PATH_LIST \
     | xargs -0 grep --color $NUMBER "$@" /dev/null
